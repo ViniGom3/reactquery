@@ -8,8 +8,9 @@ import {
 } from '@mui/material'
 import ReactLoading from 'react-loading'
 import {user} from '../data'
+import loading from '../assets/loading.svg'
 
-const loading = {
+const loadingCss = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -22,8 +23,8 @@ const Student = () => {
 
   if (isLoading) {
     return (
-      <Box sx={loading}>
-        <ReactLoading type='bubbles' height={667} width={375} />
+      <Box sx={loadingCss}>
+        <img src={loading} />
       </Box>
     )
   }

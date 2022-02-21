@@ -15,7 +15,7 @@ const loading = {
   alignItems: 'center',
 }
 
-const Student = () => {
+const Discipline = () => {
   const {data, isLoading, isError, isSuccess} = discipline.query.findAll({options: {
     refetchOnWindowFocus:true
   }})
@@ -35,7 +35,7 @@ const Student = () => {
   return (
     <Container maxWidth='sm'>
       <Typography variant='h4' mt={2} mb={2} sx={{alignSelf: 'left'}}>
-        Lista de Alunos:
+        Lista de Diciplinas:
       </Typography>
 
       {isSuccess &&
@@ -44,26 +44,26 @@ const Student = () => {
             <Paper variant={'outlined'} key={key} sx={{marginBottom:3}}>
               <ListItem>
                 <ListItemText
-                  primary={'Matricula'}
-                  secondary={data.matricula}
+                  primary={'Nome da Diciplina'}
+                  secondary={data.nome}
                 />
               </ListItem>              
               <ListItem>
                 <ListItemText
-                  primary={'Status do Aluno'}
-                  secondary={data.status}
+                  primary={'Carga Horária'}
+                  secondary={data.cargaHoraria}
                 />
               </ListItem>              
               <ListItem>
                 <ListItemText
-                  primary={'Data de Inscrição'}
-                  secondary={data.createdAt}
+                  primary={'Departamento'}
+                  secondary={data.nomeDepartamento}
                 />
               </ListItem>              
               <ListItem>
                 <ListItemText
-                  primary={'Codigo do Curso'}
-                  secondary={data.cursoId}
+                  primary={'Nível'}
+                  secondary={data.nivel}
                 />
               </ListItem>
             </Paper>
@@ -73,4 +73,4 @@ const Student = () => {
   )
 }
 
-export default Student
+export default Discipline

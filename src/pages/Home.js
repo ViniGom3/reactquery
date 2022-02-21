@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Student from '../pages/student'
+import Discipline from './discipline'
 
 
 function TabPanel(props) {
@@ -60,7 +61,7 @@ export default function BasicTabs() {
         <Student />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <Discipline />
       </TabPanel>       
     </Box>
   );

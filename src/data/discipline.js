@@ -4,7 +4,7 @@ import { api, customUseMutation, defaultOptions } from ".";
 // useQuerys
 const findAll = ({
   queryKey = "Alldisciplines",
-  fetcher = api.user.findAll,
+  fetcher = api.discipline.findAll,
   options = defaultOptions,
 }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -26,7 +26,7 @@ const add = () => customUseMutation(api.discipline.add, "Alldisciplines");
 const deleteOne = () =>
   customUseMutation(api.discipline.deleteOne, "Discipline");
 
-const discipline = {
+export const discipline = {
   query: {
     findAll,
     findOne,
@@ -36,5 +36,3 @@ const discipline = {
     deleteOne,
   },
 };
-
-export default discipline;
