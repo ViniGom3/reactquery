@@ -1,17 +1,33 @@
 import { Box } from "@mui/material";
-import { useQuery } from "react-query";
-// import useQueryUser from "../data/useQueryUser";
+import useQueryUser, { defaultValues } from "../data/hooks";
+
+// const modifiedValues = {
+//   ...defaultValues,
+//   queryKey: "user1",
+// };
+
+// ##################
+
+// const useQueryUser = () => {
+//   return useQuery("user", () => {
+//     return fetch("https://jsonplaceholder.typicode.com/users/1").then((data) =>
+//       data.json()
+//     );
+//   });
+// };
 
 const UserPage = () => {
-  const useQueryUser = () => {
-    return useQuery("user", () => {
-      return fetch("https://jsonplaceholder.typicode.com/users/1").then(
-        (data) => data.json()
-      );
-    });
-  };
+  const { data, isLoading, isError } = useQueryUser({
+    options: { staleTime: 0 },
+  });
 
-  const { data, isLoading, error } = useQueryUser();
+  if (isLoading) {
+    return <Box>Loading...</Box>;
+  }
+
+  if (isError) {
+    return <Box>Error</Box>;
+  }
 
   return (
     <Box>

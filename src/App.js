@@ -8,7 +8,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="App">
-        <h1>sahdsjodl</h1>
+        <h1>Hello World</h1>
         <UserPage />
       </div>
       <ReactQueryDevtools />
