@@ -7,7 +7,7 @@ import {
   Typography,
 } from '@mui/material'
 import ReactLoading from 'react-loading'
-import {user} from '../data'
+import {discipline} from '../data'
 
 const loading = {
   display: 'flex',
@@ -16,7 +16,7 @@ const loading = {
 }
 
 const Student = () => {
-  const {data, isLoading, isError, isSuccess} = user.query.findAll({options: {
+  const {data, isLoading, isError, isSuccess} = discipline.query.findAll({options: {
     refetchOnWindowFocus:true
   }})
 
