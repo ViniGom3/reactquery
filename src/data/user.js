@@ -1,29 +1,27 @@
-import {useQuery} from 'react-query'
-import {api} from '.'
-import {customUseMutation, defaultOptions} from './customConfigs'
+import { useQuery } from "react-query";
+import { api, customUseMutation, defaultOptions } from ".";
 
 const findAll = ({
-  queryKey = 'allUsers',
+  queryKey = "allUsers",
   fetcher = api.user.findAll,
   options = defaultOptions,
 }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useQuery(queryKey, fetcher, options)
-}
+  return useQuery(queryKey, fetcher, options);
+};
 
 const findOne =
   (license) =>
   ({
-    queryKey = 'user',
+    queryKey = "user",
     fetcher = () => api.user.findAll(license),
     options = defaultOptions,
   }) => {
-    return useQuery(queryKey, fetcher, options)
-  }
+    return useQuery(queryKey, fetcher, options);
+  };
 
-
-  const add = () => customUseMutation(api.user.add, 'allUsers')
-  const deleteOne = () =>  customUseMutation(api.user.deleteOne, 'user')
+const add = () => customUseMutation(api.user.add, "allUsers");
+const deleteOne = () => customUseMutation(api.user.deleteOne, "user");
 
 const userQuery = {
   query: {
@@ -32,8 +30,8 @@ const userQuery = {
   },
   mutation: {
     add,
-    deleteOne
-  }
-}
+    deleteOne,
+  },
+};
 
-export default userQuery
+export default userQuery;
