@@ -1,5 +1,5 @@
 import {Box, Container, TextField, Typography} from '@mui/material'
-import useQueryUser from '../data/hooks'
+import useQueryUser from '../data/user'
 import ReactLoading from 'react-loading'
 
 const loading = {
@@ -33,6 +33,8 @@ const UserPage = () => {
   if (isError) {
     return <Box>Error</Box>
   }
+
+  
 
   return (
     <Container maxWidth='xs'>

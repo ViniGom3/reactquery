@@ -23,7 +23,7 @@ const findOne =
 const add = () => customUseMutation(api.user.add, "allUsers");
 const deleteOne = () => customUseMutation(api.user.deleteOne, "user");
 
-const userQuery = {
+export const user = {
   query: {
     findAll,
     findOne,
@@ -34,4 +34,4 @@ const userQuery = {
   },
 };
 
-export default userQuery;
+
