@@ -5,8 +5,7 @@ const findAll = ({
   queryKey = "allUsers",
   fetcher = api.user.findAll,
   options = defaultOptions,
-} = {}) => {
-  console.log({...defaultOptions, ...options})
+} = {}) => {  
   // eslint-disable-next-line react-hooks/rules-of-hooks
   return useQuery(queryKey, fetcher, {...defaultOptions, ...options});
 };

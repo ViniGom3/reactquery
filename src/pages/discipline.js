@@ -6,24 +6,30 @@ import {
   Paper,  
   Typography,
 } from '@mui/material'
-import ReactLoading from 'react-loading'
+import loading from '../assets/loading.svg'
+import GroupButtons from '../components/groupButtons'
 import {discipline} from '../data'
 
-const loading = {
+const loadingCss = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
 }
 
+const disciplineCss = {
+  display: 'flex',
+  justifyContent: ''
+}
+
 const Discipline = () => {
   const {data, isLoading, isError, isSuccess} = discipline.query.findAll({options: {
-    refetchOnWindowFocus:true
+    refetchOnWindowFocus:true,    
   }})
 
   if (isLoading) {
     return (
-      <Box sx={loading}>
-        <ReactLoading type='bubbles' height={667} width={375} />
+      <Box sx={loadingCss}>
+        <img src={loading} alt='loading' />
       </Box>
     )
   }
@@ -34,6 +40,9 @@ const Discipline = () => {
 
   return (
     <Container maxWidth='sm'>
+       <Box sx={disciplineCss}>
+          <GroupButtons />
+        </Box>
       <Typography variant='h4' mt={2} mb={2} sx={{alignSelf: 'left'}}>
         Lista de Diciplinas:
       </Typography>
@@ -44,7 +53,7 @@ const Discipline = () => {
             <Paper variant={'outlined'} key={key} sx={{marginBottom:3}}>
               <ListItem>
                 <ListItemText
-                  primary={'Nome da Diciplina'}
+                  primary={'Nome da Disciplina'}
                   secondary={data.nome}
                 />
               </ListItem>              

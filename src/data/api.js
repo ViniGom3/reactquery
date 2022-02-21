@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export const http = axios.create({
   baseURL: 'http://localhost:3001/',
-  timeout: 1000,
+  timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -11,9 +11,6 @@ export const http = axios.create({
 export const api = {
   user: {
     findAll: async (data) => {
-      new Promise((resolve) => {
-        setTimeout(resolve, 5000)
-      })
       return await http.get('/aluno/').then((resp) => resp.data)
     },
     add: async (data) =>

@@ -6,7 +6,6 @@ import {
   Paper,  
   Typography,
 } from '@mui/material'
-import ReactLoading from 'react-loading'
 import {user} from '../data'
 import loading from '../assets/loading.svg'
 
@@ -17,19 +16,27 @@ const loadingCss = {
 }
 
 const Student = () => {
-  const {data, isLoading, isError, isSuccess} = user.query.findAll({options: {
-    refetchOnWindowFocus:true
+  const userquery1 = user.query.findAll({options: {
+    refetchOnWindowFocus:true,
+    retry: false,
+    refetchInterval: 3000,
+    staleTime: 1000
   }})
 
-  if (isLoading) {
+  const userquery2 = user.query.findAll({options: {
+    refetchOnWindowFocus:true,
+    retry: false
+  }})  
+
+  if (userquery1.isLoading) {
     return (
       <Box sx={loadingCss}>
-        <img src={loading} />
+        <img src={loading} alt='loading' />
       </Box>
     )
   }
 
-  if (isError) {
+  if (userquery1.isError) {
     return <Box>Error</Box>
   }
 
@@ -39,8 +46,8 @@ const Student = () => {
         Lista de Alunos:
       </Typography>
 
-      {isSuccess &&
-        data.map((data, key) => {
+      {userquery2.isSuccess &&
+        userquery1.data.map((data, key) => {
           return (            
             <Paper variant={'outlined'} key={key} sx={{marginBottom:3}}>
               <ListItem>
