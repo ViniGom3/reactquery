@@ -1,5 +1,5 @@
 import {Box, Container, TextField, Typography} from '@mui/material'
-import useQueryUser, {defaultValues} from '../data/hooks'
+import useQueryUser from '../data/hooks'
 import ReactLoading from 'react-loading'
 
 const loading = {
