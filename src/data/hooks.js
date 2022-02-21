@@ -2,11 +2,14 @@ import { useQuery } from "react-query";
 
 const defaultQueryKey = "user";
 
-const defaultFetcher = () =>
-  fetch("https://jsonplaceholder.typicode.com/users/1").then((data) =>
+const defaultFetcher = async () => {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 2000);
+  });
+  return fetch("https://jsonplaceholder.typicode.com/users/1").then((data) =>
     data.json()
   );
-
+};
 const defaultOptions = {
   staleTime: 10000,
 };
