@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { api, customUseMutation, defaultOptions } from ".";
+import { api, CustomUseMutation, defaultOptions } from ".";
 
 const findAll = ({
   queryKey = "allUsers",
@@ -10,9 +10,7 @@ const findAll = ({
   return useQuery(queryKey, fetcher, {...defaultOptions, ...options});
 };
 
-const findOne =
-  (license) =>
-  ({
+const findOne = (license) => ({
     queryKey = "user",
     fetcher = () => api.user.findAll(license),
     options = defaultOptions,
@@ -20,8 +18,10 @@ const findOne =
     return useQuery(queryKey, fetcher, options);
   };
 
-const add = () => customUseMutation(api.user.add, "allUsers");
-const deleteOne = () => customUseMutation(api.user.deleteOne, "user");
+const add = () => CustomUseMutation(api.user.add, {queryKey: "allUsers"});
+const deleteOne = () => CustomUseMutation(api.user.deleteOne, {queryKey: "user"});
+
+
 
 export const user = {
   query: {

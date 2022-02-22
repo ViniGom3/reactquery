@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Student from '../pages/student'
 import Discipline from './discipline'
+import { Container } from '@mui/material'
 
 
 function TabPanel(props) {
@@ -21,7 +22,7 @@ function TabPanel(props) {
     >
       {value === index && (
         <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
+          <Typography variant={'body2'} component='span' key={index}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -49,12 +50,12 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Container maxWidth='md'>
+    <Box mt={5}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+        <Tabs value={value} onChange={handleChange}>
           <Tab label="Alunos" {...a11yProps(0)} />
-          <Tab label="Disciplinas" {...a11yProps(1)} />
-          
+          <Tab label="Disciplinas" {...a11yProps(1)} />          
         </Tabs>
       </Box>      
       <TabPanel value={value} index={0} >
@@ -64,5 +65,6 @@ export default function BasicTabs() {
         <Discipline />
       </TabPanel>       
     </Box>
+    </Container>
   );
 }
