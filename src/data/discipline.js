@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { api, customUseMutation, defaultOptions } from ".";
+import { api, CustomUseMutation, defaultOptions } from ".";
 
 // useQuerys
 const findAll = ({
@@ -22,9 +22,9 @@ const findOne =
   };
 
 // useMutates
-const add = () => customUseMutation(api.discipline.add, "Alldisciplines");
+const add = () => CustomUseMutation(api.discipline.add, "Alldisciplines");
 const deleteOne = () =>
-  customUseMutation(api.discipline.deleteOne, "Discipline");
+  CustomUseMutation(api.discipline.deleteOne, "Discipline");
 
 export const discipline = {
   query: {
