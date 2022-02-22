@@ -1,25 +1,10 @@
-import { useQuery } from "react-query";
-import { api, CustomUseMutation, defaultOptions } from ".";
+import { api, CustomUseQuery, CustomUseMutation } from ".";
 
-// useQuerys
-const findAll = ({
-  queryKey = "Alldisciplines",
-  fetcher = api.discipline.findAll,
-  options = defaultOptions,
-}) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useQuery(queryKey, fetcher, options);
-};
+const findAll = () => CustomUseQuery("Alldisciplines", api.discipline.findAll);
 
-const findOne =
-  (license) =>
-  ({
-    queryKey = "Discipline",
-    fetcher = () => api.discipline.findAll(license),
-    options = defaultOptions,
-  }) => {
-    return useQuery(queryKey, fetcher, options);
-  };
+// useQuery
+const findOne = (id) =>
+  CustomUseQuery("Discipline", api.discipline.findOne(id));
 
 // useMutates
 const add = () => CustomUseMutation(api.discipline.add, "Alldisciplines");
