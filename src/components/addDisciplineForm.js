@@ -50,7 +50,7 @@ const AddDisciplineForm = (props) => {
       <Box
         sx={style}
       >
-        <Typography id="modal-modal-title" variant="h6" component="h2">
+        <Typography variant="h6" component="h2">
             Adicionar Disciplina:
           </Typography>
         <Box component={'form'} noValidate sx={{maxWidth: 260}}>
