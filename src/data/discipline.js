@@ -1,15 +1,12 @@
 import { api, CustomUseQuery, CustomUseMutation } from ".";
 
-const findAll = () => CustomUseQuery("allDisciplinas", api.discipline.findAll);
-
 // useQuery
-const findOne = (id) =>
-  CustomUseQuery(`disciplina - ${id}`, api.discipline.findOne(id));
+const findAll = (options) => CustomUseQuery("allDisciplinas", api.discipline.findAll, options);
+const findOne = (id, options) => CustomUseQuery(`disciplina - ${id}`, () => api.discipline.findOne(id), options);
 
 // useMutates
-const add = () => CustomUseMutation(api.discipline.add, "allDisciplinas");
-const deleteOne = () =>
-  CustomUseMutation(api.discipline.deleteOne, "Discipline");
+const add = (options) => CustomUseMutation(api.discipline.add, {queryKey: "allDisciplinas", ...options});
+const deleteOne = (options) => CustomUseMutation(api.discipline.deleteOne, {queryKey: "Discipline", ...options});
 
 export const discipline = {
   query: {

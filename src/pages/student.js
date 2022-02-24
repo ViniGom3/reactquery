@@ -38,23 +38,10 @@ const listBox = {
 const Student = () => {
   const [openAddForm, setOpenAddForm] = useState(false)
   const [openRemoveForm, setOpenRemoveForm] = useState(false)
-  const userquery1 = user.query.findAll({
-    options: {
-      refetchOnWindowFocus: true,
-      retry: false,
-      // refetchInterval: 10000,
-      staleTime: 10000,
-    },
-  })
+   
+  const {data, isLoading, isError, isSuccess} = user.query.findAll()
 
-  const userquery2 = user.query.findAll({
-    options: {
-      refetchOnWindowFocus: true,
-      retry: false,
-    },
-  })
-
-  if (userquery1.isLoading) {
+  if (isLoading) {
     return (
       <Box sx={loadingCss}>
         <img src={loading} alt='loading' />
@@ -62,7 +49,7 @@ const Student = () => {
     )
   }
 
-  if (userquery1.isError) {
+  if (isError) {
     return <Box>Error</Box>
   }
 
@@ -79,8 +66,8 @@ const Student = () => {
           />
         </Box>
 
-        {userquery2.isSuccess &&
-          userquery1.data.map((data, key) => {
+        {isSuccess &&
+          data.map((data, key) => {
             return (
               <Paper
                 variant={'outlined'}

@@ -1,7 +1,9 @@
 import { useQuery, useMutation, useQueryClient } from "react-query";
 
 export const defaultOptions = {
-  staleTime: 3000,
+  staleTime: 5000,
+  refetchOnWindowFocus: false,
+  retry: false,
 };
 
 export const CustomUseMutation = (fetcher, customOptions) => {

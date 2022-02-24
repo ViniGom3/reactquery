@@ -1,27 +1,13 @@
-import { useQuery } from "react-query";
-import { api, CustomUseMutation, defaultOptions } from ".";
+import { api, CustomUseMutation, CustomUseQuery } from ".";
 
-const findAll = ({
-  queryKey = "allUsers",
-  fetcher = api.user.findAll,
-  options = defaultOptions,
-} = {}) => {  
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  return useQuery(queryKey, fetcher, {...defaultOptions, ...options});
-};
+        
+// useQuery        
+const findAll = (options) =>  CustomUseQuery('allUsers', api.user.findAll, options)
+const findOne = (data, options) => CustomUseQuery('user', () => api.user.findOne(data), options)
 
-const findOne = (license) => ({
-    queryKey = "user",
-    fetcher = () => api.user.findAll(license),
-    options = defaultOptions,
-  }= {}) => {
-    return useQuery(queryKey, fetcher, options);
-  };
-
-const add = () => CustomUseMutation(api.user.add, {queryKey: "allUsers"});
-const deleteOne = () => CustomUseMutation(api.user.deleteOne, {queryKey: "user"});
-
-
+// useMutation
+const add = (options) => CustomUseMutation(api.user.add, {queryKey: "allUsers", ...options});
+const deleteOne = (options) => CustomUseMutation(api.user.deleteOne, {queryKey: "user", ...options});
 
 export const user = {
   query: {
