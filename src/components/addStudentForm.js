@@ -9,6 +9,7 @@ import {Alert} from '@mui/material'
 import {LoadingButton} from '@mui/lab'
 import PersonIcon from '@mui/icons-material/Person';
 import {user} from '../data'
+import { useQueryClient } from 'react-query'
 
 
 const style = {
@@ -27,8 +28,12 @@ const StudentForm = (props) => {
   const [formInput, setFormInput] = useState({
     matricula: '',
   })
+
+  const queryClient = useQueryClient()
   
-  const studentMutation = user.mutation.add()
+  const studentMutation = user.mutation.add({onSuccess: (result) =>   
+    queryClient.setQueryData('allUsers', (oldData) => oldData, result))
+  })
 
   const handleSubmit = () => {
     const data = formInput    

@@ -8,7 +8,7 @@ import {
   Paper,
   Typography,
 } from '@mui/material'
-import {user} from '../data'
+import {api, user} from '../data'
 import loading from '../assets/loading.svg'
 import GroupButton from '../components/groupButtons'
 import KeyIcon from '@mui/icons-material/Key'
@@ -18,6 +18,7 @@ import QrCode2Icon from '@mui/icons-material/QrCode2'
 import StudentForm from '../components/addStudentForm'
 import {useState} from 'react'
 import RemoveStudentForm from '../components/removeStudentForm'
+import { useMutation, useQueryClient } from 'react-query'
 
 const loadingCss = {
   display: 'flex',
@@ -38,8 +39,12 @@ const listBox = {
 const Student = () => {
   const [openAddForm, setOpenAddForm] = useState(false)
   const [openRemoveForm, setOpenRemoveForm] = useState(false)
+  const queryClient = useQueryClient
    
-  const {data, isLoading, isError, isSuccess} = user.query.findAll()
+  const {data, isLoading, isError, isSuccess} = user.query.findAll({
+    refetchOnWindowFocus: true, 
+  })
+ 
 
   if (isLoading) {
     return (
