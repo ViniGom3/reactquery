@@ -21,5 +21,6 @@ export const CustomUseMutation = (fetcher, customOptions) => {
 };
 
 export const CustomUseQuery = (queryKey, fetcher, customOptions = {}) => {
+  console.log(queryKey)
   return useQuery(queryKey, fetcher, { ...defaultOptions, ...customOptions });
 };
